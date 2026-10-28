@@ -1,250 +1,214 @@
-// In React, props are used to pass data from one component to another component.
-// Think of props like arguments in a function. You give a component some information, and it uses that information to display something.
-// Props allow you to pass information from a parent component to a child component.
-// Step 1: Create a component
-// EXAMPLE-1
-// function Student(props) {
-//     return <h1>Hello, {props.name}!</h1>;
-// }
-// Let’s understand each part:
-// function Student(props)
-// Creates a component named Student that receives props.
+// 1. What is State in React?
+// State is data that a React component remembers and that can change over time.
+// For example, imagine you’re building a website with:
+// * A counter that increases when you click a button.
+// * A like button that switches between liked and unliked.
+// * A form that stores the name entered by a user.
+// * A dark mode button that changes the website’s theme.
 
-// props.name
-// Gets the value of the name property.
+// All these features can use state.
 
-// return
-// Returns the JSX that React displays.
+// Real-life example: A counter
+// Imagine a counter on your website.
+// Initially:
+// count: 0
+// You click the button once:
+// count: 1
+// You click it again:
+// count: 2
+// The counter’s value changes every time you click the button.
+// React state allows the component to remember the current value and update the screen when that value changes.
 
-// {props.name}
-// Displays the value inside the JSX.
+// 2. What is useState()?
+// React provides a special function called useState() to manage state inside a functional component.
+// First, we import it:
 
-// Step 2: Pass props to the component
+// import { useState } from "react";
+
 // function App() {
-//     return (
-//         <div>
-//             <Student name="Rahul" />
-//             <Student name="Priya" />
-//             <Student name="Aman" />
-//         </div>
-//     );
-// }
+//   const [count, setCount] = useState(0);
 
-// EXAMPLE-2
-// function Student(props) {
-//     return (
-//         <div>
-//             <h2>Name: {props.name}</h2>
-//             <p>Age: {props.age}</p>
-//         </div>
-//     );
-// }
-// function App() {
-//     return (
-//         <div>
-//             <Student name="Rahul" age={19} />
-//             <Student name="Priya" age={18} />
-//         </div>
-//     );
-// }
-
-// // Output:
-// // Name: Rahul
-// // Age: 19
-
-// // Name: Priya
-// // Age: 18
-
-// In JSX, use curly braces to pass JavaScript values, such as numbers, variables, booleans, objects, or expressions.
-// 1. What is React?
-// React is a JavaScript library used to build user interfaces (UIs).
-// For example:
-// <Student age={19} />
-// <Student isStudent={true} />
-// <Student name={studentName} />
-
-// EXAMPLE-3
-// function Student({ name, age }) {
-//     return (
-//         <div>
-//             <h2>{name}</h2>
-//             <p>{age}</p>
-//         </div>
-//     );
-// }
-// function Student(props) {
-//     return (
-//         <div>
-//             <h2>{props.name}</h2>
-//             <p>{props.age}</p>
-//         </div>
-//     );
-// }
-// So, what’s the difference?
-
-// Without destructuring:
-// props.name
-// props.age
-
-// With destructuring:
-// name
-// age
-// Destructuring lets you extract the properties you need directly from the props object.
-
-// EXAMPLE-4
-// function Greeting(props) {
-//     return (
-//         <button onClick={props.sayHello}>
-//             Click Me
-//         </button>
-//     );
-// * Instagram’s feed
-// * YouTube’s video cards
-// * Amazon’s product listings
-// * A login page
-// * Your ClassCache website
-
-// eact helps us build these interfaces using reusable components.
-// Without React vs. With React
-// Imagine you’re building a website with 100 product cards.
-// Without React: You might write similar HTML repeatedly.
-// With React: You can create one product component and reuse it 100 times with different data.
-
-//  2. What are Components?
-//  A component is a reusable piece of a user interface.
-//  For example, imagine a website with these parts:
-// * Navbar
-// * Sidebar
-// * Profile card
-// * Footer
-// We can create a separate component for each part.
-// Example
-// function Welcome() {
-//   return <h1>Welcome to React!</h1>;
-// }
-// export default Welcome;
-
-// How do we use it?
-// function App() {
-//     function sayHello() {
-//         alert("Hello!");
-//     }
-
-//     return <Greeting sayHello={sayHello} />;
 //   return (
 //     <div>
-//       <Welcome />
-//       <Welcome />
-//       <Welcome />
+//       <h1>Count: {count}</h1>
+
+//       <button onClick={() => setCount(count + 1)}>
+//         Increase
+//       </button>
 //     </div>
 //   );
 // }
+
 // export default App;
 
-// Output:
-// Welcome to React!
-// Welcome to React!
-// Welcome to React!
-// Notice that we wrote the Welcome component only once but reused it three times.
+// count: The current state value
+// setCount: The function used to update the state
+// useState(0): Creates state with an initial value of 0
 
-// Important rules:
-// * React component names should start with a capital letter.
-// * A component usually returns JSX.
-// * Components can be reused wherever needed.
+// Think of it this way:
+// * count tells you the current value.
+// * setCount() lets you request a change to that value.
+// * 0 is the initial value.
 
-//  3. What is JSX?
-//  JSX stands for JavaScript XML.
-//  It lets us write HTML-like syntax inside JavaScript code.
+// Why do we write square brackets []?
+// Look at this line:
+// const [count, setCount] = useState(0);
+// useState() returns an array containing two values:
+// 1. The current state value.
+// 2. A function that updates that state.
 
-//  For example:
-//  function App() {
-//   const name = "Kanishka";
-//   return <h1>Hello, {name}!</h1>;
-// }
-// export default App;
+// We use array destructuring to store those values in separate variables.
+// For example, conceptually:
+// const result = useState(0);
+// const count = result[0];
+// const setCount = result[1];
+// React lets us write the shorter version:
+// const [count, setCount] = useState(0);
 
-// How does it work?
-// Output:Hello, Kanishka!
+// Step 3: Display the state
+// <h1>Count: {count}</h1>
+// Remember that curly braces {} let you use JavaScript expressions inside JSX.
+// If count is 0, React displays:
+// count: 0
+// If count becomes 5, React displays:
+// count: 5
 
-// 1. The App component creates a function called sayHello.
-// 2. App passes that function to Greeting through props.
-// 3. Greeting uses the function when the button is clicked.
-// 4. An alert displaying Hello! appears.
-// Here, we have:
-// const name = "Kanishka";
-// This creates a JavaScript variable.
-// Then:
-// <h1>Hello, {name}!</h1>
-// The curly braces {} allow us to use a JavaScript expression inside JSX.
+// Step 4: Update the state
+// <button onClick={() => setCount(count + 1)}>
+//   Increase
+// </button>
+// Let’s break this down.
+// onClick
+// Runs the event handler when the user clicks the button.
+// () =>
+//   Creates an arrow function.
+// setCount(count + 1)
+// Requests that React update the counter to its current value plus one.
+// For example, if count is 4:
+// setCount(4 + 1);
 
-// Remember:
-// Why do we use curly braces?
-// Consider these two examples.
+// The complete process
+// The process is:
+// 1. The component starts with count = 0.
+// 2. The user clicks the button.
+// 3. setCount(count + 1) requests an update.
+// 4. React renders the component with the new state.
+// 5. The screen displays the updated count.
 
-// * sayHello passes the function.
-// * sayHello() calls the function.
-// Example 1: Without curly braces
-// const age = 19;
-// return <h1>age</h1>;
-// Output:age
-// React treats age as ordinary text.
-
-// This is useful when a child component needs to trigger an action defined by its parent.
-// Example 2: With curly braces
-// const age = 19;
-// return <h1>{age}</h1>;
-// Output:19
-// React evaluates the JavaScript expression inside the curly braces.
-
-// Important Rules About Props
-// Rule 1: Props are read-only.
-// A child component should not directly modify the props it receives.
-// For example, don’t do this:
-// function Student(props) {
-//     props.name = "Aman"; // Don't modify props!
-//     return <h1>{props.name}</h1>;
-// You can also perform calculations:
-// function App() {
-//   return <h1>{10 + 20}</h1>;
-// }
-
-// Rule 2: Props flow from parent to child.
-// For example:
-//         App (Parent)
-//             |
-//             | name="Rahul"
-//             ↓
-//       Student (Child)
-//             |
-//             ↓
-//        Hello, Rahul!
-
-// Rule 3: Props can contain different types of data.
-// You can pass:
-
-// * Strings: name="Rahul"
-// * Numbers: age={19}
-// * Booleans: isStudent={true}
-// * Arrays: subjects={["Math", "Science"]}
-// * Objects: student={{ name: "Rahul", age: 19 }}
-// * Functions: onClick={handleClick}
-// Output: 30
-// Remember: Use {} when you want JSX to evaluate a JavaScript expression instead of displaying plain text.
-
-// A few JSX rules
-// Rule 1: Use className instead of class.
-// React uses className to specify CSS classes in JSX.
-
-// Rule 2: Close your tags.
-// <img src="photo.jpg" alt="Profile" />
-
-// Rule 3: Return one parent element.
+// Important: You should not change state directly. Use its setter function instead.
+// Incorrect:
+// count = count + 1;
 // Correct:
-// return (
-//   <div>
-//     <h1>Hello</h1>
-//     <p>Welcome!</p>
-//   </div>
-// );
-// The <div> wraps both elements.
-// You can also use a React Fragment, <>...</>, instead of a <div> when you don’t need an extra HTML element.
+// setCount(count + 1);
+// Changing a normal variable does not tell React to update the UI.
+
+
+// 3. Example 2: Like and Unlike Button
+// Now let’s use state for something other than numbers.
+// Imagine you have a button that lets users like a post.
+// Initially, the post is not liked.
+// When the user clicks the button, it becomes liked. Clicking again removes the like.
+// import { useState } from "react";
+
+// function App() {
+//   const [liked, setLiked] = useState(false);
+
+//   return (
+//     <div>
+//       <h1>{liked ? "❤️ Liked" : "🤍 Not Liked"}</h1>
+
+//       <button onClick={() => setLiked(!liked)}>
+//         Like
+//       </button>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+// 4. Example 3: Store a Name Using State
+// State can also store text entered by a user.
+// Let’s create a small app that accepts a name and displays it.
+// import { useState } from "react";
+
+// function App() {
+//   const [name, setName] = useState("");
+
+//   return (
+//     <div>
+//       <input
+//         type="text"
+//         value={name}
+//         onChange={(event) => setName(event.target.value)}
+//         placeholder="Enter your name"
+//       />
+
+//       <h2>Hello, {name}!</h2>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+// 5. What happens if we use a normal variable instead of state?
+// This is an important question.
+// Consider the following code:
+// function App() {
+//   let count = 0;
+
+//   return (
+//     <div>
+//       <h1>{count}</h1>
+
+//       <button onClick={() => count++}>
+//         Increase
+//       </button>
+//     </div>
+//   );
+// }
+
+// export default App;
+// You might expect the number to increase when you click the button.
+// But the screen will not update just because count changes.
+// Why?
+// Because count is a normal JavaScript variable. Updating it does not tell React that the UI needs to change.
+// Now compare it with:
+// const [count, setCount] = useState(0);
+// When you call:
+// setCount(count + 1);
+// React knows that the state needs to be updated and renders the component again.
+// That’s why we use state for data that affects the UI.
+
+
+// Easy trick to remember:
+// * Props = data passed to a component.
+// * State = data managed by a component that can change over time.
+
+// 7. Three Important Rules of State
+// Rule 1: Never modify state directly
+// ❌ Incorrect:
+// count++;
+// ✅ Correct:
+// setCount(count + 1);
+
+// Rule 2: State updates trigger a re-render
+// When you update state using its setter, React renders the component again so the UI can reflect the new value.
+// Rule 3: State belongs to a component
+// Each instance of a component can have its own state.
+// For example, if you render two separate counter components, each can maintain its own count.
+// One counter can display 3, while the other displays 7.
+// Changing one doesn’t automatically change the other.
+
+// 8. A Small Note About Updating State
+// Sometimes, you may see this syntax:
+// setCount((previousCount) => previousCount + 1);
+// You might wonder why we use this instead of:
+// setCount(count + 1);
+// Both work for a simple counter click.
+// However, when the next value depends on the previous state, using an updater function is a reliable approach.
+// For example:
+// setCount((previousCount) => previousCount + 1);
+// Here, previousCount represents the previous state value React provides to the updater.
+// This becomes especially useful when you need to perform multiple updates based on the previous value.
